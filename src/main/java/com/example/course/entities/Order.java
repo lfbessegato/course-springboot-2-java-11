@@ -112,6 +112,17 @@ public class Order implements Serializable {
 		return items;
 	}
 
+	//Método para calcular o total de cada item OrderItem
+	public Double getTotal() {
+		double sum = 0.0;
+		for (OrderItem x : items) {
+			sum += x.getSubTotal();
+		}
+		return sum;
+	}
+	
+	
+	//HashCode and Equals
 	@Override
 	public int hashCode() {
 		final int prime = 31;
