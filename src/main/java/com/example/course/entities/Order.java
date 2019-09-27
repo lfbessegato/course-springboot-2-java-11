@@ -10,25 +10,32 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
-@Table(name="tb_order")
-public class Order implements Serializable{
-	
+@Table(name = "tb_order")
+public class Order implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id // Para definir como campo chave no BD
-	@GeneratedValue(strategy = GenerationType.IDENTITY) //Para auto incremento
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // Para auto incremento
 	private Long id;
+
+	// Formatar a data no ISO 8601
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant moment;
-	
-	//Para fazer a dependencia e o relacionamento
+
+	// Para fazer a dependencia e o relacionamento
+
 	@ManyToOne
-	@JoinColumn(name="client_id") // nome do relacionamento
+	@JoinColumn(name = "client_id") // nome do relacionamento
 	private User client;
-	
+
 	public Order() {
 	}
 
@@ -86,9 +93,5 @@ public class Order implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
-	
-	
 
 }
