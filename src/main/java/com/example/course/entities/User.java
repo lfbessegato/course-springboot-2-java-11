@@ -2,6 +2,13 @@ package com.example.course.entities;
 
 import java.io.Serializable;
 
+//Fazer a classe e depender da especificação
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id; 
+
+@Entity
 public class User implements Serializable{
 	
 	/**
@@ -9,7 +16,8 @@ public class User implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	
+	@Id // Para definir como campo chave no BD
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //Para auto incremento
 	private Long id;
 	private String name;
 	private String email;
